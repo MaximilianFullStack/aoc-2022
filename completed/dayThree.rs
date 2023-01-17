@@ -4,18 +4,19 @@ use std::fs;
 fn ruks(sacks: String) -> u32 {
     let mut count: u32 = 0;
     sacks.lines()
-        .for_each(|line| 
-            { let (l, r) = line.split_at(line.len() / 2); 
-                for c in l.chars() { if r.find(c) != None {
-                    let b = r.as_bytes()[r.find(c).unwrap()];
-                    if b > 95 {
-                        count += b as u32 - 96;
-                        break;
-                    } else {
-                        count += b as u32 - 38;
-                        break;
-                    }
-                }}});
+        .for_each(|line| { 
+            let (l, r) = line.split_at(line.len() / 2); 
+            for c in l.chars() { if r.find(c) != None {
+                let b = r.as_bytes()[r.find(c).unwrap()];
+                if b > 95 {
+                    count += b as u32 - 96;
+                    break;
+                } else {
+                    count += b as u32 - 38;
+                    break;
+                }
+            }}
+        });
     count
 }
 
